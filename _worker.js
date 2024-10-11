@@ -1253,7 +1253,7 @@ async function proxyURL(proxyURL, url) {
 function checkSUB(host) {
 	if ((!sub || sub == '') && (addresses.length + addressesapi.length + addressesnotls.length + addressesnotlsapi.length + addressescsv.length) == 0){
 		addresses = [
-			'Join.my.Telegram.channel.CMLiussss.to.unlock.more.premium.nodes.cf.090227.xyz#加入我的频道t.me/CMLiussss解锁更多优选节点',
+			'',
 			'visa.cn:443',
 			'www.visa.com:8443',
 			'cis.visa.com:2053',
@@ -1715,7 +1715,7 @@ async function getAddressescsv(tls) {
 			
 			const ipAddressIndex = 0;// IP地址在 CSV 头部的位置
 			const portIndex = 1;// 端口在 CSV 头部的位置
-			const dataCenterIndex = tlsIndex + 1; // 数据中心是 TLS 的后一个字段
+			const dataCenterIndex = tlsIndex + 3; // 数据中心是 TLS 的后一个字段
 		
 			if (tlsIndex === -1) {
 				console.error('CSV文件缺少必需的字段');
