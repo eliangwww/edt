@@ -1393,7 +1393,6 @@ async function getVLESSConfig(userID, hostName, sub, UA, RproxyIP, _url) {
 		}
 
 		return 
-<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
