@@ -1392,28 +1392,110 @@ async function getVLESSConfig(userID, hostName, sub, UA, RproxyIP, _url) {
 			订阅器 += `\nSUB（优选订阅生成器）: ${sub}`;
 		}
 
-		return `
-################################################################
-Subscribe / sub 订阅地址, 支持 Base64、clash-meta、sing-box 订阅格式
----------------------------------------------------------------
-快速自适应订阅地址:
+		return 
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>订阅信息</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #eef2f3;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #4A90E2;
+        }
+        h2 {
+            border-bottom: 2px solid #4A90E2;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+        }
+        pre {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            overflow: auto;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        button {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            background-color: #4A90E2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            padding: 5px 10px;
+        }
+        button:hover {
+            background-color: #357ABD;
+        }
+        a {
+            color: #4A90E2;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>订阅信息</h1>
+        
+        <h2>快速自适应订阅地址:</h2>
+        <pre>
 https://${proxyhost}${hostName}/${userID}
+<button onclick="copyToClipboard('https://${proxyhost}${hostName}/${userID}')">复制</button
+
 https://${proxyhost}${hostName}/${userID}?sub
+<button onclick="copyToClipboard('https://${proxyhost}${hostName}/${userID}?sub')">复制</button
 
 Base64订阅地址:
 https://${proxyhost}${hostName}/${userID}?b64
+<button onclick="copyToClipboard('https://${proxyhost}${hostName}/${userID}?b64')">复制</button
+
 https://${proxyhost}${hostName}/${userID}?base64
+<button onclick="copyToClipboard('https://${proxyhost}${hostName}/${userID}?base64')">复制</button
 
 clash订阅地址:
 https://${proxyhost}${hostName}/${userID}?clash
+<button onclick="copyToClipboard('https://${proxyhost}${hostName}/${userID}?clash')">复制</button
 
 singbox订阅地址:
 https://${proxyhost}${hostName}/${userID}?sb
+<button onclick="copyToClipboard('https://${proxyhost}${hostName}/${userID}?sb')">复制</button
+
 https://${proxyhost}${hostName}/${userID}?singbox
----------------------------------------------------------------
-################################################################
-${FileName} 配置信息
----------------------------------------------------------------
+<button onclick="copyToClipboard('https://${proxyhost}${hostName}/${userID}?singbox')">复制</button
+        </pre>
+
+        <h2>${FileName} 配置信息</h2>
+        <pre>
 HOST: ${hostName}
 UUID: ${userID}
 FKID: ${fakeUserID}
@@ -1422,26 +1504,42 @@ UA: ${UA}
 ${订阅器}
 SUBAPI（订阅转换后端）: ${subProtocol}://${subconverter}
 SUBCONFIG（订阅转换配置文件）: ${subconfig}
----------------------------------------------------------------
-################################################################
-v2ray
----------------------------------------------------------------
+        </pre>
+
+        <h2>v2ray</h2>
+        <pre>
 ${v2ray}
----------------------------------------------------------------
-################################################################
-clash-meta
----------------------------------------------------------------
+        </pre>
+
+        <h2>clash-meta</h2>
+        <pre>
 ${clash}
----------------------------------------------------------------
-################################################################
-telegram 交流群 技术大佬~在线发牌!
-https://t.me/CMLiussss
----------------------------------------------------------------
-github 项目地址 Star!Star!Star!!!
-https://github.com/cmliu/edgetunnel
----------------------------------------------------------------
-################################################################
-`;
+        </pre>
+
+        <h2>交流群</h2>
+        <p>技术大佬~在线发牌! <a href="https://t.me/CMLiussss" target="_blank">点击加入</a></p>
+
+        <h2>GitHub 项目地址</h2>
+        <p><a href="https://github.com/cmliu/edgetunnel" target="_blank">Star!Star!Star!!!</a></p>
+    </div>
+
+    <div class="footer">
+        &copy; 2024 订阅信息
+    </div>
+
+    <script>
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(function() {
+                alert('已复制: ' + text);
+            }, function(err) {
+                console.error('复制失败: ', err);
+            });
+        }
+    </script>
+</body>
+</html>
+
+;
 	} else {
 		if (typeof fetch != 'function') {
 			return 'Error: fetch is not available in this environment.';
