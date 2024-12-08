@@ -1,6 +1,6 @@
 
 import { connect } from 'cloudflare:sockets';
-let name后缀='[SERV00:Socks5]'
+let name后缀=''
 let userID = '';
 let proxyIP = '';
 let sub = '';
@@ -88,6 +88,11 @@ export default {
 			proxyIP = proxyIPs[Math.floor(Math.random() * proxyIPs.length)];
 
 			socks5Address = env.SOCKS5 || socks5Address;
+			if (socks5Address) {
+                          name后缀 = "[SERV00:Socks5]";} 
+			else {
+                          name后缀 = ""; // 若 socks5Address 为空，name 后缀保持为空
+			}
 			socks5s = await 整理(socks5Address);
 			socks5Address = socks5s[Math.floor(Math.random() * socks5s.length)];
 			socks5Address = socks5Address.split('//')[1] || socks5Address;
